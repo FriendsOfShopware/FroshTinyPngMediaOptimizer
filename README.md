@@ -11,6 +11,7 @@ Converts PNG-Images for best score in size and quality. For JPG we recommend [op
 * Download the [latest plugin version](https://github.com/tinect/TinectTinyPngOptimizer/releases/latest/)
 * Upload and install plugin using Plugin Manager
 * enter your valid license-code of [tinypng.com](https://tinypng.com/) Free for 500 images/month which should be enough for png-usage
+* adjust limit in config
 
 ## future features:
 * ...
