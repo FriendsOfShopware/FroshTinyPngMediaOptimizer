@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="tinypng_optimizer.service_factory"
+                 class="TinectTinyPngOptimizer\Components\TinyPngServiceFactory"/>
+
+        <service id="tinypng_optimizer.service" class="TinectTinyPngOptimizer\Components\TinyPngService">
+            <factory service="tinypng_optimizer.service_factory" method="factory"/>
+            <argument type="service" id="shopware.plugin.cached_config_reader"/>
+        </service>
+
+        <service id="tinypng_optimizer.image_optimizer" class="TinectTinyPngOptimizer\Components\TinyPngOptimizer">
+            <tag name="shopware_media.optimizer" priority="500"/>
+            <argument type="service" id="tinypng_optimizer.service"/>
+            <argument type="string">%kernel.root_dir%/</argument>
+            <argument type="service" id="tinypng_optimizer.config"/>
+        </service>
+
+        <service id="tinypng_optimizer.config" class="Shopware\Components\Plugin\CachedConfigReader">
+            <factory service="shopware.plugin.cached_config_reader" method="getByPluginName"/>
+            <argument type="string">TinectTinyPngOptimizer</argument>
+        </service>
+    </services>
+</container>

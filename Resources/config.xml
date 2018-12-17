@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../engine/Shopware/Components/Plugin/schema/config.xsd">
+    <elements>
+        <element>
+            <name>apiKey</name>
+            <label lang="de">API-Key</label>
+            <label>API-Key</label>
+        </element>
+        <element type="button">
+            <name>checkLicense</name>
+            <label lang="de">Lizenz prüfen</label>
+            <label>Check licence</label>
+            <options>
+                <handler>
+                    <![CDATA[
+    function (button) {
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                Shopware.Notification.createGrowlMessage("TinyPng.com", xmlhttp.responseText);
+            } else if(xmlhttp.readyState == 4 && xmlhttp.status == 404) {
+                Shopware.Notification.createGrowlMessage("tinyPng.com", "Plugin must be activated");
+            }
+        }
+        xmlhttp.open("GET", "VerifyTinyPngApiKey", false);
+        xmlhttp.send();
+    }
+                    ]]>
+                </handler>
+            </options>
+        </element>
+        <element type="boolean">
+            <name>optimizeOriginal</name>
+            <label lang="de">Optimiere auch Originalbilder</label>
+            <label>optimize original images, too</label>
+            <value>true</value>
+        </element>
+        <element type="number">
+            <name>limit</name>
+            <label lang="de">Monatliches Limit</label>
+            <label>Mountly limit</label>
+            <value>500</value>
+        </element>
+    </elements>
+</config>

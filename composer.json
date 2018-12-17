@@ -1,0 +1,20 @@
+{
+  "name": "tinect/tinypng-optimizer",
+  "keywords": ["shopware", "backend", "thumbnails", "media manager"],
+  "description": "optimizing thumbnails with tinypng.com",
+  "license": "MIT",
+  "type": "shopware-plugin",
+  "authors": [
+    {
+      "name": "tinect",
+      "homepage": "https://github.com/tinect",
+      "role": "Developer"
+    }
+  ],
+  "extra": {
+    "installer-name": "TinectTinyPngOptimizer"
+  },
+  "require": {
+    "composer/installers": "~1.0"
+  }
+}
