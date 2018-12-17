@@ -4,7 +4,8 @@ optimizing thumbnails with [tinypng.com](https://tinypng.com/)
 
 # Description
 
-Converts PNG-Images for best score in size and quality. For JPG we recommend [optimus.io](https://github.com/tinect/TinectOptimusOptimizer)
+Converts PNG-Images for best score in size and quality.
+For JPG we recommend [optimus.io](https://github.com/tinect/TinectOptimusOptimizer)
 
 ## Zip-Installation
 
@@ -15,5 +16,8 @@ Converts PNG-Images for best score in size and quality. For JPG we recommend [op
 
 ## future features:
 * ...
+
+Small result-comparison with google-insights: https://github.com/tinect/optimizertest
+
 
 ## [Buy me a coffee](https://www.paypal.me/tinect/)
