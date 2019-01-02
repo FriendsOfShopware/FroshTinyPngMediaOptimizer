@@ -110,7 +110,7 @@ class TinyPngService
             }
         }
 
-        if ($header['Compression-Count'] && (int)$header['Compression-Count'] < $this->getLimit()) {
+        if (array_key_exists('Compression-Count', $header) && (int)$header['Compression-Count'] < $this->getLimit()) {
             return true;
         }
 
