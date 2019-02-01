@@ -1,10 +1,9 @@
 <?php
 
-namespace TinectTinyPngOptimizer\Components;
+namespace FroshTinyPngMediaOptimizer\Components;
 
 /**
  * Class TinyPngApiException
- * @package TinectTinyPngOptimizer\Components
  */
 class TinyPngApiException extends \Exception
 {

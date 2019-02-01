@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/plugin.xsd">
-    <label lang="de">TinectTinyPngOptimizer</label>
-    <label lang="en">TinectTinyPngOptimizer</label>
+    <label lang="de">FroshTinyPngMediaOptimizer</label>
+    <label lang="en">FroshTinyPngMediaOptimizer</label>
     <version>1.0.1</version>
-    <link>http://www.tinect.de/</link>
-    <author>Sebastian König</author>
-    <copyright>(c)</copyright>
-    <compatibility minVersion="5.2.17"/>
+    <copyright>Friends of Shopware</copyright>
     <license>MIT</license>
+    <link>https://github.com/FriendsOfShopware/FroshTinyPngMediaOptimizer</link>
+    <author>Friends of Shopware</author>
+
+    <compatibility minVersion="5.2.17">
+        <blacklist>TinectTinyPngOptimizer</blacklist>
+    </compatibility>
     <description>
         <![CDATA[
 

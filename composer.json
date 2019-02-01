@@ -1,5 +1,5 @@
 {
-  "name": "tinect/tinypng-optimizer",
+  "name": "frosh/tinypng-optimizer",
   "keywords": ["shopware", "backend", "thumbnails", "media manager"],
   "description": "optimizing thumbnails with tinypng.com",
   "license": "MIT",
@@ -12,7 +12,7 @@
     }
   ],
   "extra": {
-    "installer-name": "TinectTinyPngOptimizer"
+    "installer-name": "FroshTinyPngMediaOptimizer"
   },
   "require": {
     "composer/installers": "~1.0"

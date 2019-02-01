@@ -1,10 +1,9 @@
 <?php
 
-namespace TinectTinyPngOptimizer\Components;
+namespace FroshTinyPngMediaOptimizer\Components;
 
 /**
  * Class OptimusService
- * @package TinectOptimusOptimizer\Components
  */
 class TinyPngService
 {
@@ -43,11 +42,13 @@ class TinyPngService
 
     /**
      * @param string $apiKey
+     *
      * @return $this
      */
     public function setApiKey($apiKey)
     {
-        $this->apiKey = (string)$apiKey;
+        $this->apiKey = (string) $apiKey;
+
         return $this;
     }
 
@@ -61,30 +62,30 @@ class TinyPngService
 
     /**
      * @param int $limit
+     *
      * @return $this
      */
     public function setLimit($limit)
     {
         $this->limit = $limit;
+
         return $this;
     }
-
 
     /**
      * @return bool
      */
     public function verifyApiKey()
     {
-
         $endpoint = $this->endpoint;
 
-        $headers = array(
+        $headers = [
             'User-Agent: API',
-            'Accept: */*'
-        );
+            'Accept: */*',
+        ];
 
         $ch = curl_init();
-        curl_setopt_array($ch, array(
+        curl_setopt_array($ch, [
             CURLOPT_USERNAME => 'user',
             CURLOPT_PASSWORD => $this->getApiKey(),
             CURLOPT_URL => $endpoint,
@@ -93,8 +94,8 @@ class TinyPngService
             CURLOPT_BINARYTRANSFER => true,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_HEADER => true,
-            CURLOPT_SSL_VERIFYPEER => true
-        ));
+            CURLOPT_SSL_VERIFYPEER => true,
+        ]);
 
         $response = curl_exec($ch);
         $curlError = curl_error($ch);
@@ -110,36 +111,36 @@ class TinyPngService
             }
         }
 
-        if (array_key_exists('Compression-Count', $header) && (int)$header['Compression-Count'] < $this->getLimit()) {
+        if (array_key_exists('Compression-Count', $header) && (int) $header['Compression-Count'] < $this->getLimit()) {
             return true;
         }
 
         return false;
     }
 
-
     /**
      * @param string $image
      * @param string $target
-     * @return void
+     *
      * @throws TinyPngApiException
+     *
+     * @return void
      */
     public function optimize($image, $target = '')
     {
-
         $endpoint = $this->endpoint;
 
-        $headers = array(
+        $headers = [
             'User-Agent: API',
-            'Accept: */*'
-        );
+            'Accept: */*',
+        ];
 
         if ($target === '') {
             $target = $image;
         }
 
         $ch = curl_init();
-        curl_setopt_array($ch, array(
+        curl_setopt_array($ch, [
             CURLOPT_USERNAME => 'user',
             CURLOPT_PASSWORD => $this->apiKey,
             CURLOPT_URL => $endpoint,
@@ -148,8 +149,8 @@ class TinyPngService
             CURLOPT_BINARYTRANSFER => true,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_HEADER => true,
-            CURLOPT_SSL_VERIFYPEER => true
-        ));
+            CURLOPT_SSL_VERIFYPEER => true,
+        ]);
 
         $response = curl_exec($ch);
         $curlError = curl_error($ch);
@@ -176,5 +177,4 @@ class TinyPngService
 
         file_put_contents($target, file_get_contents($header['Location']));
     }
-
 }
