@@ -48,7 +48,7 @@ class TinyPngOptimizer implements OptimizerInterface
      */
     public function getName()
     {
-        return 'TinyPng';
+        return 'TinyPng.com by Frosh';
     }
 
     /**

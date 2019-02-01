@@ -6,15 +6,15 @@
                  class="FroshTinyPngMediaOptimizer\Components\TinyPngServiceFactory"/>
 
         <service id="frosh_tinypng_optimizer.service" class="FroshTinyPngMediaOptimizer\Components\TinyPngService">
-            <factory service="tinypng_optimizer.service_factory" method="factory"/>
+            <factory service="frosh_tinypng_optimizer.service_factory" method="factory"/>
             <argument type="service" id="shopware.plugin.cached_config_reader"/>
         </service>
 
         <service id="frosh_tinypng_optimizer.image_optimizer" class="FroshTinyPngMediaOptimizer\Components\TinyPngOptimizer">
             <tag name="shopware_media.optimizer" priority="500"/>
-            <argument type="service" id="tinypng_optimizer.service"/>
+            <argument type="service" id="frosh_tinypng_optimizer.service"/>
             <argument type="string">%kernel.root_dir%/</argument>
-            <argument type="service" id="tinypng_optimizer.config"/>
+            <argument type="service" id="frosh_tinypng_optimizer.config"/>
         </service>
 
         <service id="frosh_tinypng_optimizer.config" class="Shopware\Components\Plugin\CachedConfigReader">

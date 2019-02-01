@@ -4,15 +4,8 @@
   "description": "optimizing thumbnails with tinypng.com",
   "license": "MIT",
   "type": "shopware-plugin",
-  "authors": [
-    {
-      "name": "tinect",
-      "homepage": "https://github.com/tinect",
-      "role": "Developer"
-    }
-  ],
   "extra": {
-    "installer-name": "FroshTinyPngMediaOptimizer"
+    "installer-name": "FroshOptimusMediaOptimizer"
   },
   "require": {
     "composer/installers": "~1.0"

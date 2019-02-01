@@ -1,25 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/plugin.xsd">
-    <label lang="de">FroshTinyPngMediaOptimizer</label>
-    <label lang="en">FroshTinyPngMediaOptimizer</label>
-    <version>1.0.1</version>
-    <copyright>Friends of Shopware</copyright>
-    <license>MIT</license>
-    <link>https://github.com/FriendsOfShopware/FroshTinyPngMediaOptimizer</link>
-    <author>Friends of Shopware</author>
+<label lang="de">FroshTinyPngMediaOptimizer</label>
+<label lang="en">FroshTinyPngMediaOptimizer</label>
 
-    <compatibility minVersion="5.2.17">
-        <blacklist>TinectTinyPngOptimizer</blacklist>
-    </compatibility>
-    <description>
-        <![CDATA[
+<version>1.0.2</version>
 
-        <b>You'll need a licence of tinypng.com</b><br />
-        optimizing thumbnails with <a href='https://tinypng.com/' target='_blank'>tinypng.com</a>
-        <br /><br />
-        Converts PNG-Images for best sizes and result.<br /><br />
+<copyright>Friends of Shopware</copyright>
+<license>MIT</license>
+<link>https://github.com/FriendsOfShopware/FroshTinyPngMediaOptimizer</link>
+<author>Friends of Shopware</author>
 
-        ]]>
-    </description>
+<compatibility minVersion="5.2.17">
+    <blacklist>TinectTinyPngOptimizer</blacklist>
+</compatibility>
+
+<description>Optimize your images with tinypng.com for best results</description>
+<description lang="de">Optimiere deine Bilder voll automatisch mit tinypng.com für beste Ergebnisse</description>
+
+    <changelog version="1.0.2">
+        <changes lang="de">Willkommen bei Frosh</changes>
+        <changes lang="en">Welcome to Frosh</changes>
+    </changelog>
+
+    <changelog version="1.0.1">
+        <changes lang="de">Behebe Probleme mit Lizenzprüfung</changes>
+        <changes lang="en">fix licence-verification</changes>
+    </changelog>
+
+    <changelog version="1.0.0">
+        <changes lang="de">Erstveröffentlichung</changes>
+        <changes lang="en">initial release</changes>
+    </changelog>
+
 </plugin>
