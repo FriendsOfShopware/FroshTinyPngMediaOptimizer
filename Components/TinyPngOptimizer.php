@@ -65,7 +65,7 @@ class TinyPngOptimizer implements OptimizerInterface
 
         $this->tinyPngService->optimize($filepath);
 
-        if ($this->pluginConfig['optimizeOriginal']) {
+        if ($this->pluginConfig['optimizeOriginal'] && $this->isRunnable()) {
             $this->optimizeOriginalFiles();
         }
     }
