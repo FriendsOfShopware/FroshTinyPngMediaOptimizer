@@ -2,22 +2,17 @@
 
 namespace FroshTinyPngMediaOptimizer\Components;
 
-use Shopware\Components\Plugin\CachedConfigReader;
-
 /**
  * Class OptimusServiceFactory
  */
 class TinyPngServiceFactory
 {
     /**
-     * @param CachedConfigReader $cachedConfigReader
-     *
+     * @param $pluginconfig
      * @return TinyPngService
      */
-    public static function factory(CachedConfigReader $cachedConfigReader)
+    public static function factory($pluginconfig)
     {
-        $config = $cachedConfigReader->getByPluginName('TinectTinyPngOptimizer');
-
-        return new TinyPngService($config['apiKey'], $config['limit']);
+        return new TinyPngService($pluginconfig['apiKey'], $pluginconfig['limit']);
     }
 }
