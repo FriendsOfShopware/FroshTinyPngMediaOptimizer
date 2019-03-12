@@ -55,6 +55,7 @@ class TinyPngOptimizer implements OptimizerInterface
      * @param string $filepath
      *
      * @throws TinyPngApiException
+     * @throws TinyPngPersistanceException
      */
     public function run($filepath)
     {
@@ -83,10 +84,7 @@ class TinyPngOptimizer implements OptimizerInterface
      */
     public function isRunnable()
     {
-        /*
-         * TODO: consider using cache
-         */
-        return $this->tinyPngService->verifyApiKey();
+        return $this->tinyPngService->verifyApiKey(true);
     }
 
     /**

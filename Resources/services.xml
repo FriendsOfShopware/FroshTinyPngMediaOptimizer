@@ -8,6 +8,7 @@
         <service id="frosh_tinypng_optimizer.service" class="FroshTinyPngMediaOptimizer\Components\TinyPngService">
             <factory service="frosh_tinypng_optimizer.service_factory" method="factory"/>
             <argument type="service" id="frosh_tinypng_optimizer.config"/>
+            <argument type="service" id="shopware.cache_manager"/>
         </service>
 
         <service id="frosh_tinypng_optimizer.image_optimizer" class="FroshTinyPngMediaOptimizer\Components\TinyPngOptimizer">
