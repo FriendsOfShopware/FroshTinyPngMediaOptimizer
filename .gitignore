@@ -1,0 +1,6 @@
+# PhpStorm files
+.idea
+
+# Git Files
+!.gitkeep
+!.htaccess

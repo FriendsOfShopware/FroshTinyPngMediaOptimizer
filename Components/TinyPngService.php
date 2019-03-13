@@ -10,30 +10,25 @@ class TinyPngService
     /**
      * @var string
      */
+    const ENDPOINT = 'https://api.tinify.com/shrink';
+
+    /**
+     * @var array
+     */
+    const REQUEST_HEADERS = [
+        'User-Agent: API',
+        'Accept: */*',
+    ];
+
+    /**
+     * @var string
+     */
     private $apiKey;
 
     /**
      * @var integer
      */
     private $limit;
-
-    /**
-     * @var null|integer
-     */
-    private $compressionCount = null;
-
-    /**
-     * @var string
-     */
-    private $endpoint = 'https://api.tinify.com/shrink';
-
-    /**
-     * @var array
-     */
-    private $requestHeaders = [
-        'User-Agent: API',
-        'Accept: */*',
-    ];
 
     /**
      * @var \Zend_Cache_Core
@@ -81,7 +76,7 @@ class TinyPngService
      * @return bool
      * @throws \Zend_Cache_Exception
      */
-    public function setCompressionCount(int $count)
+    private function setCompressionCount(int $count)
     {
         return $this->cache->save($count, $this->getCompressionCountKey(), [], 60*60);
     }
@@ -94,9 +89,17 @@ class TinyPngService
         return md5($this->getApiKey() . 'tinypngCounter');
     }
 
+    /**
+     * @param int $step
+     * @throws \Zend_Cache_Exception
+     */
     private function raiseCompressionCount(int $step = 1)
     {
-        $this->compressionCount += $step;
+        if($this->cache->test($this->getCompressionCountKey()) === false) {
+            $this->setCompressionCount(0);
+        }
+
+        $this->setCompressionCount($this->getCompressionCount() + $step);
     }
 
     /**
@@ -115,8 +118,8 @@ class TinyPngService
         curl_setopt_array($ch, [
             CURLOPT_USERNAME => 'user',
             CURLOPT_PASSWORD => $this->getApiKey(),
-            CURLOPT_URL => $this->endpoint,
-            CURLOPT_HTTPHEADER => $this->requestHeaders,
+            CURLOPT_URL => self::ENDPOINT,
+            CURLOPT_HTTPHEADER => self::REQUEST_HEADERS,
             CURLOPT_POSTFIELDS => '',
             CURLOPT_BINARYTRANSFER => true,
             CURLOPT_RETURNTRANSFER => true,
@@ -134,7 +137,7 @@ class TinyPngService
             return true;
         }
 
-        return true;
+        return false;
     }
 
     /**
@@ -144,6 +147,7 @@ class TinyPngService
      * @return void
      * @throws TinyPngApiException
      * @throws TinyPngPersistanceException
+     * @throws \Zend_Cache_Exception
      */
     public function optimize($image, $target = '')
     {
@@ -155,8 +159,8 @@ class TinyPngService
         curl_setopt_array($ch, [
             CURLOPT_USERNAME => 'user',
             CURLOPT_PASSWORD => $this->apiKey,
-            CURLOPT_URL => $this->endpoint,
-            CURLOPT_HTTPHEADER => $this->requestHeaders,
+            CURLOPT_URL => self::ENDPOINT,
+            CURLOPT_HTTPHEADER => self::REQUEST_HEADERS,
             CURLOPT_POSTFIELDS => file_get_contents($image),
             CURLOPT_BINARYTRANSFER => true,
             CURLOPT_RETURNTRANSFER => true,
