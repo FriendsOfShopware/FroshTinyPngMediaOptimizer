@@ -19,7 +19,7 @@
 
         <service id="frosh_tinypng_optimizer.config" class="Shopware\Components\Plugin\CachedConfigReader">
             <factory service="shopware.plugin.cached_config_reader" method="getByPluginName"/>
-            <argument type="string">FroshTinyPngMediaOptimizer</argument>
+            <argument type="string">%frosh_tiny_png_media_optimizer.plugin_name%</argument>
         </service>
     </services>
 </container>

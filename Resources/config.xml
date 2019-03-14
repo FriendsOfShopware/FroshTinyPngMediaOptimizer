@@ -33,7 +33,7 @@
         <element type="boolean">
             <name>optimizeOriginal</name>
             <label lang="de">Optimiere auch Originalbilder</label>
-            <label>optimize original images, too</label>
+            <label>Optimize original images, too</label>
             <value>true</value>
         </element>
         <element type="number">
@@ -41,6 +41,25 @@
             <label lang="de">Monatliches Limit</label>
             <label>Mountly limit</label>
             <value>500</value>
+        </element>
+        <element type="select">
+            <name>mimeTypes</name>
+            <label>Use for image formats</label>
+            <label lang="de">Nutze für Bildformate</label>
+            <value>image/png</value>
+            <store>
+                <option>
+                    <value>image/png</value>
+                    <label>PNG</label>
+                </option>
+                <option>
+                    <value>image/jpeg</value>
+                    <label>JPEG</label>
+                </option>
+            </store>
+            <options>
+                <multiSelect>true</multiSelect>
+            </options>
         </element>
     </elements>
 </config>

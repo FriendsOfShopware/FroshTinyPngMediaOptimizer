@@ -13,7 +13,8 @@ class TinyPngOptimizer implements OptimizerInterface
     /**
      * @var array
      */
-    public static $supportedMimeTypes = ['image/png'];
+    public static $supportedMimeTypes;
+
     /**
      * @var TinyPngService
      */
@@ -36,11 +37,12 @@ class TinyPngOptimizer implements OptimizerInterface
      * @param string         $rootDir
      * @param array          $pluginConfig
      */
-    public function __construct(TinyPngService $tinyPngService, $rootDir, array $pluginConfig)
+    public function __construct(TinyPngService $tinyPngService, string $rootDir, array $pluginConfig)
     {
         $this->tinyPngService = $tinyPngService;
         $this->rootDir = $rootDir;
         $this->pluginConfig = $pluginConfig;
+        self::$supportedMimeTypes = $pluginConfig['mimeTypes'];
     }
 
     /**
