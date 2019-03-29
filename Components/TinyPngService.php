@@ -72,45 +72,16 @@ class TinyPngService
     }
 
     /**
-     * @param int $count
-     * @return bool
-     * @throws \Zend_Cache_Exception
-     */
-    private function setCompressionCount(int $count)
-    {
-        return $this->cache->save($count, $this->getCompressionCountKey(), [], 60*60);
-    }
-
-    /**
-     * @return string
-     */
-    private function getCompressionCountKey()
-    {
-        return md5($this->getApiKey() . 'tinypngCounter');
-    }
-
-    /**
-     * @param int $step
-     * @throws \Zend_Cache_Exception
-     */
-    private function raiseCompressionCount(int $step = 1)
-    {
-        if($this->cache->test($this->getCompressionCountKey()) === false) {
-            $this->setCompressionCount(0);
-        }
-
-        $this->setCompressionCount($this->getCompressionCount() + $step);
-    }
-
-    /**
      * @param bool $allowCaching
-     * @return bool
+     *
      * @throws \Zend_Cache_Exception
+     *
+     * @return bool
      */
     public function verifyApiKey($allowCaching = false)
     {
         // use verification cache
-        if($allowCaching && $this->getCompressionCount() !== false) {
+        if ($allowCaching && $this->getCompressionCount() !== false) {
             return $this->getCompressionCount() < $this->getLimit();
         }
 
@@ -131,9 +102,10 @@ class TinyPngService
         $header = self::parseHeadersFromCurlResponse($ch, $response);
 
         if (array_key_exists('Compression-Count', $header) && (int) $header['Compression-Count'] < $this->getLimit()) {
-            if($allowCaching) {
+            if ($allowCaching) {
                 $this->setCompressionCount(intval($header['Compression-Count']));
             }
+
             return true;
         }
 
@@ -144,10 +116,11 @@ class TinyPngService
      * @param string $image
      * @param string $target
      *
-     * @return void
      * @throws TinyPngApiException
      * @throws TinyPngPersistanceException
      * @throws \Zend_Cache_Exception
+     *
+     * @return void
      */
     public function optimize($image, $target = '')
     {
@@ -180,11 +153,11 @@ class TinyPngService
             throw new TinyPngApiException($body);
         }
 
-        if(($compressedImage = file_get_contents($header['Location'])) === false) {
+        if (($compressedImage = file_get_contents($header['Location'])) === false) {
             throw new TinyPngApiException("Couldn't retrieve {$header['Location']}.");
         }
 
-        if(file_put_contents($target, $compressedImage) === false) {
+        if (file_put_contents($target, $compressedImage) === false) {
             throw new TinyPngPersistanceException("Couldn't write compressed image to {$target}.");
         }
 
@@ -192,8 +165,43 @@ class TinyPngService
     }
 
     /**
+     * @param int $count
+     *
+     * @throws \Zend_Cache_Exception
+     *
+     * @return bool
+     */
+    private function setCompressionCount($count)
+    {
+        //lifetime is set to 2 minutes
+        return $this->cache->save($count, $this->getCompressionCountKey(), [], 60*2);
+    }
+
+    /**
+     * @return string
+     */
+    private function getCompressionCountKey()
+    {
+        return md5($this->getApiKey() . 'tinypngCounter');
+    }
+
+    /**
+     * @param int $step
+     *
+     * @throws \Zend_Cache_Exception
+     */
+    private function raiseCompressionCount($step = 1)
+    {
+        if ($this->cache->test($this->getCompressionCountKey()) === false) {
+            $this->setCompressionCount(0);
+        }
+
+        $this->setCompressionCount($this->getCompressionCount() + $step);
+    }
+
+    /**
      * @param resource|false $curlResource
-     * @param bool|string $response
+     * @param bool|string    $response
      *
      * @return array
      */
@@ -207,6 +215,7 @@ class TinyPngService
                 $header[$matches[1]] = $matches[2];
             }
         }
+
         return $header;
     }
 }

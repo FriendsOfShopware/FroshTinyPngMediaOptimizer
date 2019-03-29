@@ -10,8 +10,9 @@ use Shopware\Components\CacheManager;
 class TinyPngServiceFactory
 {
     /**
-     * @param array $config
+     * @param array        $config
      * @param CacheManager $cacheManager
+     *
      * @return TinyPngService
      */
     public static function factory(array $config, CacheManager $cacheManager)

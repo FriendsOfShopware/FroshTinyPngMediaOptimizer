@@ -12,14 +12,16 @@ class Shopware_Controllers_Backend_VerifyTinyPngApiKey extends \Enlight_Controll
     public function indexAction()
     {
         $this->container->get('front')->Plugins()->ViewRenderer()->setNoRender();
-        $config = Shopware()->Container()->get('frosh_tinypng_optimizer.config');
+        $config = $this->container->get('frosh_tinypng_optimizer.config');
 
         if (!$config['apiKey']) {
             $this->response->setBody('Key is missing! Saved?');
         } else {
-            $optimus = new TinyPngService($config['apiKey'], PHP_INT_MAX);
+            $cache = $this->container->get('shopware.cache_manager');
+            $optimus = new TinyPngService($config['apiKey'], PHP_INT_MAX, $cache);
+
             if ($optimus->verifyApiKey()) {
-                $optimusLimit = new TinyPngService($config['apiKey'], $config['limit']);
+                $optimusLimit = new TinyPngService($config['apiKey'], $config['limit'], $cache);
 
                 if ($optimusLimit->verifyApiKey()) {
                     $this->response->setBody($config['apiKey'] . ' is valid');
