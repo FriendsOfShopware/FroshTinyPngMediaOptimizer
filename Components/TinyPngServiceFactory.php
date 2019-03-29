@@ -2,17 +2,20 @@
 
 namespace FroshTinyPngMediaOptimizer\Components;
 
+use Shopware\Components\CacheManager;
+
 /**
- * Class OptimusServiceFactory
+ * Class TinyPngServiceFactory
  */
 class TinyPngServiceFactory
 {
     /**
-     * @param $pluginconfig
+     * @param array $config
+     * @param CacheManager $cacheManager
      * @return TinyPngService
      */
-    public static function factory($pluginconfig)
+    public static function factory(array $config, CacheManager $cacheManager)
     {
-        return new TinyPngService($pluginconfig['apiKey'], $pluginconfig['limit']);
+        return new TinyPngService($config['apiKey'], $config['limit'], $cacheManager->getCoreCache());
     }
 }
