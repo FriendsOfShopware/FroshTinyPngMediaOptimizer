@@ -17,7 +17,7 @@ class Shopware_Controllers_Backend_VerifyTinyPngApiKey extends \Enlight_Controll
         if (!$config['apiKey']) {
             $this->response->setBody('Key is missing! Saved?');
         } else {
-            $cache = $this->container->get('shopware.cache_manager');
+            $cache = $this->container->get('shopware.cache_manager')->getCoreCache();
             $optimus = new TinyPngService($config['apiKey'], PHP_INT_MAX, $cache);
 
             if ($optimus->verifyApiKey()) {

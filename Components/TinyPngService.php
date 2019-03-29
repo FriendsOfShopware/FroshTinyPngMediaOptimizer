@@ -174,7 +174,7 @@ class TinyPngService
     private function setCompressionCount($count)
     {
         //lifetime is set to 2 minutes
-        return $this->cache->save($count, $this->getCompressionCountKey(), [], 60*2);
+        return $this->cache->save($count, $this->getCompressionCountKey(), ['Shopware_Config'], 60*2);
     }
 
     /**
