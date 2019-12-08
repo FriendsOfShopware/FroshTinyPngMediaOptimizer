@@ -43,6 +43,10 @@ class TinyPngOptimizer implements OptimizerInterface
         $this->rootDir = $rootDir;
         $this->pluginConfig = $pluginConfig;
         self::$supportedMimeTypes = $pluginConfig['mimeTypes'];
+
+        if(is_string(self::$supportedMimeTypes)) {
+            self::$supportedMimeTypes = [$pluginConfig['mimeTypes']];
+        }
     }
 
     /**
