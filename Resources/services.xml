@@ -22,5 +22,13 @@
             <factory service="shopware.plugin.cached_config_reader" method="getByPluginName"/>
             <argument type="string">%frosh_tiny_png_media_optimizer.plugin_name%</argument>
         </service>
+
+        <service id="frosh_tinypng_optimizer.subscriber.media_model" class="FroshTinyPngMediaOptimizer\Subscriber\MediaModel">
+            <tag name="shopware.event_subscriber" />
+            <argument type="service" id="frosh_tinypng_optimizer.config"/>
+            <argument type="service" id="shopware_media.optimizer_service"/>
+            <argument type="service" id="shopware_media.media_service"/>
+            <argument>%kernel.root_dir%</argument>
+        </service>
     </services>
 </container>
